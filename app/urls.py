@@ -21,5 +21,8 @@ from .views import dashboard
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('', dashboard, name='dashboard'),
+
+    # bring student urls to app
+    path('student/', include('student.urls'))
 ]

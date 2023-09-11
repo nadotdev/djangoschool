@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Student Enrollment Application</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <label for="firstname">First name</label>
+                <input type="text" name="firstname" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="lastname">Last name</label>
+                <input type="text" name="lastname" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="gender">Gender</label>
+                <select name="gender" class="form-control">
+                    <option value="">Choose gender</option>
+                    <option value="">M</option>
+                    <option value="">F</option>
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="date_joined">Date of Joined</label>
+                <input type="date" name="date_joined" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label for="phone">Parent of Student</label>
+                <select name="parent_id" class="form-control">
+                    <option value="">--- Choose Parent ID ---</option>
+                    {% for pid in parent_id %}
+                        <option value="{{ pid.id }}">{{ pid.id }} - Parent of {{ pid.parent_of_student }}</option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label for="">Photo</label>
+                <input type="file" name="photo" class="form-control" accept=".png, .jpg, .jpeg">
+            </div>
+            <div class="col-lg-6" style="margin-top: 20px;">
+                <input type="submit" value="Submit Application" class="btn btn-sm btn-primary">
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

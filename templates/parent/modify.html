@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Modify or changes</h3>
+        <form action="/student/parents/update/{{ parent.id }}" method="post">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <label for="parent_of">Parent Of Student</label>
+                <input type="text" value="{{ parent.parent_of_student }}" name="parent_of" class="form-control" required placeholder="e.g Jonh Stone">
+            </div>
+            <div class="col-lg-6">
+                <label for="phone" >Phone</label>
+                <input type="text" required value="{{ parent.phone }}" name="phone" class="form-control" placeholder="e.g +855 123456789">
+            </div>
+            <div class="col-lg-6">
+                <label for="email">Email</label>
+                <input type="email"
+                       value="{{ parent.email }}"
+                       name="email"
+                       required
+                       class="form-control" placeholder="e.g sothatna@yahoo.com">
+            </div>
+            <div class="col-lg-6" style="margin-top: 20px;">
+                <input type="submit"
+                       value="Save changes"
+                       class="btn btn-sm btn-primary">
+            </div>
+        </form>
+    </div>
+{% endblock %}

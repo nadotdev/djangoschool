@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Parent Register Application</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <label for="parent_of">Parent Of Student</label>
+                <input type="text" name="parent_of" class="form-control" required placeholder="e.g Jonh Stone">
+            </div>
+            <div class="col-lg-6">
+                <label for="phone" >Phone</label>
+                <input type="text" required name="phone" class="form-control" placeholder="e.g +855 123456789">
+            </div>
+            <div class="col-lg-6">
+                <label for="lastname">Email</label>
+                <input type="email" name="email" required class="form-control" placeholder="e.g jonhstone123@yahoo.com">
+            </div>
+            <div class="col-lg-6" style="margin-top: 20px;">
+                <input type="submit" value="Submit Application" class="btn btn-sm btn-primary">
+            </div>
+        </form>
+    </div>
+{% endblock %}

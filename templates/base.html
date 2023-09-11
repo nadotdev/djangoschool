@@ -51,14 +51,19 @@
     {% include 'shared/header.html' %}
     <!-- End Header -->
 
+
     <!-- Left Sidebar -->
     {% include 'shared/sidebar.html' %}
 
     <!-- End Sidebar -->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        {% include 'shared/content.html' %}
+    <div class="content-wrapper" style="padding: 20px">
+        <div class="container-fluid">
+            {% include 'shared/alertmessage.html' %}
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
     <!-- Content Wrapper. Contains page content -->
 
