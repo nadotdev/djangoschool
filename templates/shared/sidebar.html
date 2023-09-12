@@ -55,11 +55,34 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i>
+                    <span>Classrooms</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-angle-right"></i> Classroom</a>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Grade</a>
+                    </li>
+                      <li><a href=""><i class="fa fa-angle-right"></i> Course</a>
+                    </li>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Teacher</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i>
                     <span>Students</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{% url 'student-enrollment' %}"><i class="fa fa-angle-right"></i> Student Enrollment</a>
+                    </li>
+                      <li><a href="{% url 'student-list' %}"><i class="fa fa-angle-right"></i> Student Listing</a>
+                    </li>
+                    <li><a href="{% url 'student-attendance-list' %}"><i class="fa fa-angle-right"></i> Attendances</a>
+                    </li>
+                    <li><a href="{% url 'create-attendance' %}"><i class="fa fa-angle-right"></i> Remark Attendances</a>
                     </li>
                 </ul>
             </li>
@@ -77,6 +100,11 @@
                     </li>
                 </ul>
             </li>
+
+
+
+
+
             {#            <li class="treeview">#}
             {#              <a href="#">#}
             {#                <i class="fa fa-laptop"></i>#}
@@ -92,17 +120,17 @@
             {#                <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>#}
             {#              </ul>#}
             {#            </li>#}
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>Forms</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                    <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-                </ul>
-            </li>
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i class="fa fa-edit"></i> <span>Forms</span>#}
+{#                    <i class="fa fa-angle-left pull-right"></i>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>#}
+{#                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>#}
+{#                    <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>#}
+{#                </ul>#}
+{#            </li>#}
             {#            <li class="treeview">#}
             {#              <a href="#">#}
             {#                <i class="fa fa-table"></i> <span>Tables</span>#}
@@ -132,7 +160,7 @@
                 </a>
                 <ul class="treeview-menu">
                     {#                <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>#}
-                    <li><a href=""><i class="fa fa-user-plus"></i> Register Account</a></li>
+{#                    <li><a href=""><i class="fa fa-user-plus"></i> Register Account</a></li>#}
                     <li><a href="/admin" target="_blank"><i class="fa fa-user-secret"></i>Site Administrator</a></li>
                     <li><a href="{% url 'logout' %}"><i class="fa fa-mail-reply "></i> Logout System</a></li>
 

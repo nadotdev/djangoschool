@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Modify or changes Student Info</h3>
+        <form action="/student/update/{{ student.id }}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <label for="firstname">First name</label>
+                <input type="text" required name="new_firstname" value="{{ student.firstname }}" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="lastname">Last name</label>
+                <input type="text" required name="new_lastname" value="{{ student.lastname }}" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="gender">Gender</label>
+                <select name="new_gender" class="form-control">
+                    {% if student.gender == 0  %}
+                        <option value="0" selected>M</option>
+                        <option value="1">F</option>
+                    {% else %}
+                        <option value="0">M</option>
+                        <option value="1" selected>F</option>
+                    {% endif%}
+
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label for="dob">Date of Birth</label>
+                <input type="date"  name="new_dob" value="{{ student.date_of_birth|date:"Y-m-d" }}" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="date_joined">Date of Joined</label>
+                <input type="date" value="{{ student.date_of_joined|date:"Y-m-d" }}" name="new_date_joined" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label for="phone">Parent of Student</label>
+                <select name="new_parent_id" class="form-control">
+                    <option>Choose Parent ID</option>
+                    {% for p in parent_id %}
+                        <option value="{{ p.id }}" {% if p.id == student.parent_id %}selected{% endif %}>
+                            {{ p.id }}
+                        </option>
+                    {% endfor %}
+                    {% if student.parent_id.id %}
+                        {% for p in parents %}
+                            {% if p.id != student.parent_id.id %}
+                                <option value="{{ p.id }}">{{ p.id }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </select>
+
+
+            </div>
+            <div class="col-lg-6">
+                <label for="">Prev Photo</label>
+                <div></div>
+                <img
+                        src="/media/{{ student.photo }}"
+                        width="100px"
+                        style="
+                            border: 1px solid #ddd;
+                            padding: 10px;
+                            border-radius: 10px;
+                            margin-bottom: 10px;
+                        "
+                />
+{#                <input type="hidden" name="prev_photo" value="{{ student.photo }}" class="form-control" accept=".png, .jpg, .jpeg">#}
+                <div></div>
+                <label for="">New Photo</label>
+                <input type="file" name="new_photo" class="form-control" accept=".png, .jpg, .jpeg">
+            </div>
+            <div class="col-lg-6" style="margin-top: 20px;">
+                <input type="submit" value="Save Changes" class="btn btn-sm btn-warning">
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

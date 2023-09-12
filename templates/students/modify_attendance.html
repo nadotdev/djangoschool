@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Modify or Changes Attendance</h3>
+        <form action="/student/modify-attendance/{{ attendance.id }}" method="post">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <label for="date">Date</label>
+                 <input type="date" name="date" value="{{ attendance.date|date:"Y-m-d" }}" class="form-control" disabled>
+            </div>
+            <div class="col-lg-6">
+                <label for="remark">Remark</label>
+                <select name="remark" class="form-control">
+                    {% if attendance.remark ==  0%}
+                        <option value="0" selected>P</option>
+                        <option value="1">L</option>
+                        <option value="2">A</option>
+                    {% elif attendance.remark == 1 %}
+                        <option value="0">P</option>
+                        <option value="1" selected>L</option>
+                        <option value="2">A</option>
+                    {% else %}
+                        <option value="0" >P</option>
+                        <option value="1">L</option>
+                        <option value="2" selected>A</option>
+                    {% endif %}
+
+                </select>
+
+            </div>
+            <div class="col-lg-6">
+                <label for="student_id">Student</label>
+                <select name="student_id" class="form-control" disabled>
+                        <option value="{{ student.id }}">{{ student.firstname }} {{ student.lastname }}</option>
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <input type="submit" value="Save Changes" class="btn btn-sm btn-warning" style="margin-top: 25px;">
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
