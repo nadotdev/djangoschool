@@ -8,11 +8,11 @@
             <input type="text" required name="subject_name" class="form-control" placeholder="Subject name, e.g: Math, Physic, Bio">
 
             <label for="">Grade</label>
-            {% comment %} <select name="grade_id" class="form-control">
-                {% for grade in grade_list  %}
+            <select name="grade_id" class="form-control">
+                {% for grade in grades  %}
                     <option value="{{ grade.id }}">{{ grade.grade_name}}</option>
                 {% endfor %}
-            </select> {% endcomment %}
+            </select>
             <input type="submit" value="Submit" class="btn btn-sm btn-primary" style="margin-top: 12px;">
         </form> 
     </div>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Teacher Enrollment Form</h3>
+         <form action="{% url 'classroom-create-teacher' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <label for="">Teacher name</label>
+                <input type="text" required name="teacher_name" class="form-control" placeholder="teacher-name">
+            </div>
+            <div class="col-lg-6">
+                <label for="">Phone</label>
+                <input type="text" required name="phone" class="form-control" placeholder="phone number">
+            </div>
+
+             <div class="col-lg-6">
+                <label for="">Email</label>
+                <input type="email" required name="email" class="form-control" placeholder="email">
+            </div>
+
+            <div class="col-lg-6">
+                <label for="dob">Date of Birth</label>
+                <input type="date" required name="dob" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="">Photo</label>
+                <input type="file" name="photo" class="form-control" accept=".png, .jpg, .jpeg">
+            </div>
+            <div class="col-lg-6" style="margin-top: 20px;">
+                <input type="submit" value="Submit" class="btn btn-sm btn-primary" style="margin-top: 5px;">
+            </div>
+        </form>
+    </div>
+    
+{% endblock %}
+    

@@ -9,6 +9,10 @@ urlpatterns = [
     
     path('create-subject/', views.create_subject, name="classroom-create-subject"),
     path('subjects/', views.subjects, name="classroom-list-subject"),
+    path('modify-subject/<int:subject_id>', views.modify_subject, name="classroom-modify-subject"),
+    path('delete-subject/<int:subject_id>', views.delete_subject, name="classroom-delete-subject"),
 
-    
+    path('teachers/', views.get_all_teacher, name="classroom-list-teacher"),
+    path('enroll-teachers/', views.create_teacher, name="classroom-create-teacher"),
+
 ]
