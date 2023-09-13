@@ -14,5 +14,7 @@ urlpatterns = [
 
     path('teachers/', views.get_all_teacher, name="classroom-list-teacher"),
     path('enroll-teachers/', views.create_teacher, name="classroom-create-teacher"),
+    path('delete-teacher/<int:teacher_id>', views.delete_teacher_record, name="classroom-delete-teacher"),
+    path('modify-teacher/<int:teacher_id>', views.modify_teacher_record, name="classroom-modify-teacher"),
 
 ]

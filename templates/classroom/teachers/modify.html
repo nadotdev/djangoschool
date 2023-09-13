@@ -1,23 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
     <div>
-        <h3>Modify or Changes Subject</h3>
-        <form action="/classroom/modify-subject/{{ subject.id }}" method="post">
+         <a href="{% url 'classroom-list-teacher' %}">Back</a>
+         <h3>Modify or Changes Teacher Info</h3>
+         <form action="/classroom/modify-teacher/{{ teacher.id }}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="">Subject name</label>
-            <input type="text" required name="subject_name" value="{{ subject.subject_name }}" class="form-control" placeholder="Subject name, e.g: Math, Physic, Bio">
+            <div class="col-lg-6">
+                <label for="">Teacher name</label>
+                <input type="text" required name="name" value="{{ teacher.name }}" class="form-control" placeholder="Teacher name">
+            </div>
+            <div class="col-lg-6">
+                <label for="">Phone</label>
+                <input type="text" required name="phone" class="form-control" value="{{ teacher.phone }}" placeholder="Phone number">
+            </div>
 
-            <label for="">Grade</label>
-            <select name="grade_id" class="form-control">
-                {% for grade in grades  %}
-                    {% if grade.id == subject.grade.id %}
-                         <option value="{{ grade.id }}" selected>{{ grade.grade_name}}</option>
-                    {% else %}
-                        <option value="{{ grade.id }}">{{ grade.grade_name}}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-            <input type="submit" value="Save changes" class="btn btn-sm btn-warning" style="margin-top: 12px;">
+             <div class="col-lg-6">
+                <label for="">Email</label>
+                <input type="email" required name="email" class="form-control" value="{{ teacher.email }}" placeholder="Email">
+            </div>
+
+            <div class="col-lg-6">
+                <label for="dob">Date of Birth</label>
+                <input type="date" required name="dob" value="{{ teacher.dob|date:"Y-m-d" }}" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="">Prev Photo</label>
+                <div></div>
+                <img
+                        src="/media/{{ teacher.photo }}"
+                        width="100px"
+                        style="
+                            border: 1px solid #ddd;
+                            padding: 10px;
+                            border-radius: 10px;
+                            margin-bottom: 10px;
+                        "
+                />
+                <div></div>
+                <label for="">New Photo</label>
+                <input type="file" name="new_photo" class="form-control" accept=".png, .jpg, .jpeg">
+            </div>
+            <div class="col-lg-6" style="margin-top: 20px;">
+                <input type="submit" value="Save changes" class="btn btn-sm btn-warning" style="margin-top: 5px;">
+            </div>
         </form>
     </div>
 

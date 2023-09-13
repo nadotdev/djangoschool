@@ -115,7 +115,7 @@ def delete_subject(request, subject_id):
 # Teacher view
 def get_all_teacher(request):
     """ Retrieve all teacher data"""
-    teacher_list = Teacher.objects.all()
+    teacher_list = Teacher.objects.all().order_by('id')
     page = request.GET.get('page', 1)
     paginator = Paginator(teacher_list, 5)
     try:
@@ -149,3 +149,27 @@ def create_teacher(request):
         messages.success(request, 'Teacher has been enrolled successful.')
         return HttpResponseRedirect('/classroom/teachers')
     return render(request, 'classroom/teachers/create_teacher.html')
+
+
+def delete_teacher_record(request, teacher_id):
+    teacher = get_object_or_404(Teacher, id=teacher_id)
+    if request.method == 'POST':
+        teacher.delete()
+        messages.warning(request, 'Teacher has been deleted.')
+        return HttpResponseRedirect('/classroom/teachers')
+
+
+def modify_teacher_record(request, teacher_id):
+    teacher = get_object_or_404(Teacher, id=teacher_id)
+    if request.method == "POST":
+        teacher.name = request.POST.get('name')
+        teacher.phone = request.POST.get('phone')
+        teacher.dob = request.POST.get('dob')
+        teacher.email = request.POST.get('email')
+        if 'new_photo' in request.FILES:
+            teacher.photo = request.FILES['new_photo']
+        teacher.save()
+        messages.success(request, 'Teacher Modified.')
+        return HttpResponseRedirect('/classroom/teachers')
+    context = {'teacher': teacher}
+    return render(request, 'classroom/teachers/modify.html', context)
