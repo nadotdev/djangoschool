@@ -59,12 +59,12 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-angle-right"></i> Classroom</a>
-                    <li><a href=""><i class="fa fa-angle-right"></i> Grade</a>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Classrooms</a>
+                    <li><a href="{% url 'classroom-list-grade' %}"><i class="fa fa-angle-right"></i> Grades</a>
                     </li>
-                      <li><a href=""><i class="fa fa-angle-right"></i> Course</a>
+                      <li><a href="{% url 'classroom-list-subject' %}"><i class="fa fa-angle-right"></i> Subjects</a>
                     </li>
-                    <li><a href=""><i class="fa fa-angle-right"></i> Teacher</a>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Teachers</a>
                     </li>
                 </ul>
             </li>

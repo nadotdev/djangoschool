@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Assign Subject</h3>
+        <form action="{% url 'classroom-create-subject' %}" method="post">
+            {% csrf_token %}
+            <label for="">Subject name</label>
+            <input type="text" required name="subject_name" class="form-control" placeholder="Subject name, e.g: Math, Physic, Bio">
+
+            <label for="">Grade</label>
+            {% comment %} <select name="grade_id" class="form-control">
+                {% for grade in grade_list  %}
+                    <option value="{{ grade.id }}">{{ grade.grade_name}}</option>
+                {% endfor %}
+            </select> {% endcomment %}
+            <input type="submit" value="Submit" class="btn btn-sm btn-primary" style="margin-top: 12px;">
+        </form> 
+    </div>
+    
+{% endblock %}
+    

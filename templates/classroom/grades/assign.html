@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Assign Grade</h3>
+        <form action="{% url 'classroom-assign-grade' %}" method="post">
+            {% csrf_token %}
+            <label for="grade_name">Grade name</label>
+            <input type="text" required name="grade_name" class="form-control" placeholder="Enter grade name e.g: 12A">
+            <input type="submit" value="Submit" class="btn btn-sm btn-primary" style="margin-top: 12px;">
+        </form> 
+    </div>
+    
+{% endblock %}
+    

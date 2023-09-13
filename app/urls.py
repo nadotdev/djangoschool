@@ -27,7 +27,9 @@ urlpatterns = [
     path('', dashboard, name='dashboard'),
 
     # bring student urls to app
-    path('student/', include('student.urls'))
+    path('student/', include('student.urls')),
+    path('classroom/', include('classroom.urls'))
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

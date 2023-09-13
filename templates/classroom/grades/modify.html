@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3>Modify or Changes Grade</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="grade_name">Grade name</label>
+            <input type="text" required name="grade_name" value="{{ grade.grade_name }}" class="form-control" placeholder="Modify grade name e.g: 12A">
+            <input type="submit" value="Save Changes" class="btn btn-sm btn-warning" style="margin-top: 12px;">
+        </form> 
+    </div>
+    
+{% endblock %}
+    

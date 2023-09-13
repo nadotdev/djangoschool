@@ -45,7 +45,7 @@ def student_enrollment(request):
 def student_list(request):
     students = Student.objects.all().order_by('id')
     page = request.GET.get('page', 1)
-    paginator = Paginator(students, 4)
+    paginator = Paginator(students, 5)
     try:
         students = paginator.page(page)
     except PageNotAnInteger:
