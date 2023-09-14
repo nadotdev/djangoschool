@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 from classroom.forms import GradeForm, SubjectForm
-from classroom.models import Grade, Subject, Teacher
+from classroom.models import ClassroomModel, Grade, Subject, Teacher, Student
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 
 
@@ -173,3 +173,107 @@ def modify_teacher_record(request, teacher_id):
         return HttpResponseRedirect('/classroom/teachers')
     context = {'teacher': teacher}
     return render(request, 'classroom/teachers/modify.html', context)
+
+
+# Classroom View
+def room_listing(request):
+    """Return all room records to the template
+
+    Args:
+        request (_type_): _description_
+    """
+    rooms = ClassroomModel.objects.all().order_by('id')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(rooms, 5)
+    try:
+        rooms = paginator.page(page)
+    except PageNotAnInteger:
+        rooms = paginator.page(1)
+    except EmptyPage:
+        rooms = paginator.page(paginator.num_pages)
+    context = {
+        'rooms': rooms
+    }
+    return render(request, 'classroom/rooms/rooms.html', context)
+
+
+def create_room(request):
+    """Create and return new room
+
+    Args:
+        request (_type_): _description_
+    """
+
+    if request.method == "POST":
+        room_number = request.POST.get('room_number')
+        year = request.POST.get('year')
+        grade_id = request.POST.get('grade_id')
+        student_id = request.POST.get('student_id')
+        teacher_id = request.POST.get('teacher_id')
+        
+        room_instance = ClassroomModel(
+            room_number=room_number,
+            year=year,
+            grade_id_id=grade_id,
+            student_id_id=student_id,
+            teacher_id_id=teacher_id
+        )
+        room_instance.save()
+        messages.success(request, "Room Created.")
+        return HttpResponseRedirect('/classroom/rooms')
+
+    grades = Grade.objects.all()
+    teachers = Teacher.objects.all()
+    students = Student.objects.all()
+    context = {
+        'grades': grades,
+        'teachers': teachers,
+        'students': students,
+    }
+    return render(request, 'classroom/rooms/create_room.html', context)
+
+
+def modify_room(request, room_id):
+    """Modify and update room record by take an specific id
+
+    Args:
+        req (Any): _description_
+        room_id (integer): _description_
+    """
+    room = get_object_or_404(ClassroomModel, id=room_id)
+    grades = Grade.objects.all()
+    teachers = Teacher.objects.all()
+    students = Student.objects.all()
+    
+    if request.method == "POST":
+        room.room_number = request.POST.get("room_number")
+        room.grade_id_id = request.POST.get("grade_id")
+        room.student_id_id = request.POST.get("student_id")
+        room.teacher_id_id = request.POST.get("teacher_id")
+        room.save()    
+        messages.warning(request, f"Room with id {room_id} has modified.")
+        return HttpResponseRedirect('/classroom/rooms')
+    
+    context = {
+        'room': room,
+        'grades': grades,
+        'teachers': teachers,
+        'students': students,
+    }
+    return render(request, 'classroom/rooms/modify.html', context)
+    
+    
+def delete_room_record(request, room_id):
+    """this function will be delete the record from database by the user
+        send request.
+
+    Args:
+        request (_type_): _description_
+        room_id (int): is a instance of the ClassroomModel
+    """
+    if request.method == "POST":
+        room_object = get_object_or_404(ClassroomModel, id=room_id)
+        room_object.delete()
+        messages.success(request, f"Room with id {room_id} has been delete.")
+        return HttpResponseRedirect('/classroom/rooms')
+    

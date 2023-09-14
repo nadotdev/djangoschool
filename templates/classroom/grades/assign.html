@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div>
-        <h3>Assign Grade</h3>
+        <h3 style="margin-bottom: 15px;">Assign Grade</h3>
         <form action="{% url 'classroom-assign-grade' %}" method="post">
             {% csrf_token %}
             <label for="grade_name">Grade name</label>

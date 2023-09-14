@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <a href="{% url 'classroom-list' %}">Back</a>
+        <h3 style="margin-bottom: 15px;">Modify or Changes Room info</h3>
+        <form action="/classroom/modify-room/{{ room.id }}" method="post">
+            {% csrf_token %}
+            <label for="">Room name</label>
+            <input type="text" required value="{{ room.room_number }}" class="form-control" style="margin-bottom: 15px;" name="room_number" placeholder="Room name e.g 1ED "/>
+
+            <label for="">Year</label>
+            <input type="date" required value="{{ room.year|date:'Y-m-d' }}" class="form-control" style="margin-bottom: 15px;" name="year"/>
+
+            <label for="">Grade</label>
+            <select class="form-control" name="grade_id" style="margin-bottom: 15px;" name="grade">
+                {% for grade in grades %}
+                    {% if room.grade_id_id == grade.id %}
+                        <option value="{{ grade.id }}" selected>{{ grade.grade_name}}</option>
+                    {% else %}
+                        <option value="{{ grade.id }}">{{ grade.grade_name}}</option>
+                    {% endif%}
+                {% endfor %}
+            </select>
+
+            <label for="">Student</label>
+            <select class="form-control" name="student_id" style="margin-bottom: 15px;" name="grade">
+                {% for student in students %}
+                    {% if room.student_id_id == student.id %}
+                        <option value="{{ student.id }}" selected>{{ student.firstname}} {{ student.lastname}}</option>
+                    {% else %}
+                        <option value="{{ student.id }}">{{ student.firstname}} {{ student.lastname}}</option>
+                    {% endif%}
+                {% endfor %}
+            </select>
+
+            <label for="">Teacher</label>
+            <select class="form-control" name="teacher_id" style="margin-bottom: 15px;" name="grade">
+                {% for teacher in teachers %}
+                    {% if room.teacher_id_id == teacher.id %}
+                        <option value="{{ teacher.id }}" selected>{{ teacher.name}}</option>
+                    {% else %}
+                        <option value="{{ teacher.id }}">{{ teacher.name}}</option>
+                    {% endif%}
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="Save changes" class="btn btn-sm btn-warning" />
+        </form>
+    </div
+{% endblock %}

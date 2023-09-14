@@ -6,7 +6,6 @@ default_no_image = "https://firebasestorage.googleapis.com/v0/b/fir-64ff1.appspo
 
 class Grade(models.Model):
     """ For grade model. e.g: 12A, 12B"""
-    
     grade_name = models.CharField(max_length=25, null=False)
 
 
@@ -23,6 +22,7 @@ class Teacher(models.Model):
     email = models.EmailField(unique=True, default="teacher-email@industry.com")
     photo = models.ImageField(upload_to='uploads/', null=True)
     created_at = models.DateField(auto_now=True)
+    
 
 class ClassroomModel(models.Model):
     room_number = models.CharField(max_length=5, null=False)

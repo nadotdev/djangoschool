@@ -16,5 +16,14 @@ urlpatterns = [
     path('enroll-teachers/', views.create_teacher, name="classroom-create-teacher"),
     path('delete-teacher/<int:teacher_id>', views.delete_teacher_record, name="classroom-delete-teacher"),
     path('modify-teacher/<int:teacher_id>', views.modify_teacher_record, name="classroom-modify-teacher"),
+    
+    path('rooms/', views.room_listing, name="classroom-list"),
+    path('create-room/', views.create_room, name="classroom-create"),
+    path('modify-room/<int:room_id>', views.modify_room, name="classroom-modify"),
+    path('delete-room/<int:room_id>', views.delete_room_record, name="classroom-delete"),
+    
+    
+    
+    
 
 ]
